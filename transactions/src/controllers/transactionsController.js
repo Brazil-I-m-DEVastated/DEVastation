@@ -12,15 +12,11 @@ class TransactionController {
         });
     };
 
-    static create = (req, res, next) => {
+    static create = async (req, res) => {
         const transaction = new Transaction(req.body);
-        transaction.save((err) => {
-            if (err) {
-                next(err);
-            } else {
-                res.status(201).json(transaction);
-            }
-        });
+        try { await transaction.save();
+            return res.status(201).json(transaction); }
+        catch (err) { return res.status(500).send(err.message); }
     };
 
     static updateStatus = (req, res, next) => {

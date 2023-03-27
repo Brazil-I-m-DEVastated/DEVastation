@@ -15,7 +15,7 @@ const transactionSchema = new mongoose.Schema(
         status: {
             type: String,
             required: true,
-            enum: ['EM ANÁLISE', 'APROVADA', 'REJEITADA']
+            enum: ['Em Análise', 'Aprovada', 'Rejeitada']
         }
     }
 
