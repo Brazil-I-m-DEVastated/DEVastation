@@ -27,6 +27,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FraudAnalysis"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              example: Invalid JWT Token
         500:
           description: Error
           content: 
@@ -41,6 +46,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FraudAnalysis'
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              example: Invalid JWT Token
         500:
           description: Error
           content: 
@@ -62,6 +72,11 @@ paths:
             application/json:
               schema: 
                 $ref: "#/components/schemas/FraudAnalysis"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              example: Invalid JWT Token
         404:
           description: Fraud Analysis not found
           content:
@@ -82,6 +97,11 @@ paths:
           content:
             application/json:
               example: Error. 'Aprovada' or 'Rejeitada' statuses cannot be updated.
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              example: Invalid JWT Token
         500:
           description: Error
           content: 
@@ -92,7 +112,7 @@ components:
     FraudAnalysis:
       type: object
       properties:
-        _id:
+        id:
           type: string
         client_id:
           type: string
