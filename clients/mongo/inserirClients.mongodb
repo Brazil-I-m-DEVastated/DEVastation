@@ -1,5 +1,5 @@
 use('clients');
-db.createCollection('clientsInfo');
+// db.createCollection('clientsInfo');
 
 db.clientsInfo.insertMany([
     {
