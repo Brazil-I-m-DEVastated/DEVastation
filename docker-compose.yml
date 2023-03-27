@@ -1,0 +1,41 @@
+version: "3.9"
+services:
+  mongo:
+    image: mongo:5
+    volumes:
+      - db-mongo
+    container_name: devastation-mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+    
+  clients:
+    build: ./clients/
+    container_name: devastation-clients
+    volumes:
+      - ./clients:/node-app
+    ports:
+      - 3001:3001
+
+  fraudprevention:
+    build: ./fraudPrevention/
+    container_name: devastation-fraudPrevention
+    volumes:
+      - ./fraudPrevention:/node-app
+    ports:
+      - 3002:3002
+
+  transactions:
+    build: ./transactions/
+    container_name: devastation-transactions
+    volumes:
+      - ./transactions:/node-app
+    ports:
+      - 3003:3003
+
+volumes:
+  db-mongo:
+
