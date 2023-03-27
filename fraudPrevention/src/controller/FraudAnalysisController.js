@@ -1,9 +1,10 @@
 import fraudAnalysis from '../model/FraudAnalysisModel.js';
+import ANALYSIS_STATUS from '../constants/constants.js';
 
 class FraudAnalysisController {
     static getAllAwaiting = async (_req, res) => {
         try {
-            const result = await fraudAnalysis.find({ status: 'Em Análise'});
+            const result = await fraudAnalysis.find({ status: ANALYSIS_STATUS.EM_ANALISE});
             return res.status(200).json(result);
         } catch (err) {
             return res.status(500).send({ message: err.message });
@@ -12,7 +13,6 @@ class FraudAnalysisController {
 
     static getById = async (req, res) => {
         const { id } = req.params;
-        console.log(id);
 
         try {
             const result = await fraudAnalysis.findById(id);
@@ -41,13 +41,14 @@ class FraudAnalysisController {
         const { status } = req.body;
         const { id } = req.params;
 
-        
         try {
-            const checkStatus = await fraudAnalysis.findById(id);
-            if(checkStatus.status === 'Aprovada' || checkStatus.status === 'Rejeitada') {
+            const analysis = await fraudAnalysis.findById(id);
+            if( !analysis || analysis.status === ANALYSIS_STATUS.APROVADA
+                || analysis.status === ANALYSIS_STATUS.REJEITADA ) 
+            {
                 return res.status(400).send({ message: 'Fraud Analysis Status cannot be updated' });
             }
-            await fraudAnalysis.findByIdAndUpdate(id, status);
+            await fraudAnalysis.findByIdAndUpdate(id, {status});
             return res.status(204).end();
         } catch (err) {
             return res.status(500).send({ message: err.message });
