@@ -7,6 +7,7 @@ const router = express.Router();
 
 router
     .get('transactions/:id', TransactionController.getById)
-    .post('transactions', TransactionController.create);
+    .post('transactions', TransactionController.create)
+    .patch('transactions/:id', TransactionController.updateStatus);
 
 export default router;
