@@ -1,0 +1,106 @@
+use('clients');
+db.createCollection('clientsInfo');
+
+db.clientsInfo.insertMany([
+    {
+        'name': 'Isac Queiroz',
+        'cpf': '398429384-12', 
+        'email': 'senha1',
+        'phoneNumber': '32280873',
+        'income': 1213123,
+        'address':{
+            'street':'rua tal 1',
+            'complement':'alameda tal',
+            'number':'10',                    
+            'cep':'55513235',
+            'city':'belem2',
+            'state':'para2',
+        },
+        'card':{
+            'number':'rua tal 1',
+            'name':'10',
+            'expirationDate':'alameda tal',
+            'cvc':'765',
+        }                         
+    },{
+        'name': 'Carlos Brazil',
+        'cpf': '398429384-12', 
+        'email': 'senha1',
+        'phoneNumber': '32280873',
+        'income': 1213123,
+        'address':{
+            'street':'rua tal 1',
+            'complement':'alameda tal',
+            'number':'10',                    
+            'cep':'55513235',
+            'city':'belem2',
+            'state':'para2',
+        },
+        'card':{
+            'number':'rua tal 1',
+            'name':'10',
+            'expirationDate':'alameda tal',
+            'cvc':'656',
+        }                         
+    },{
+        'name': 'João chile',
+        'cpf': '398429384-12', 
+        'email': 'senha1',
+        'phoneNumber': '32280873',
+        'income': 1213123,
+        'address':{
+            'street':'rua tal 1',
+            'complement':'alameda tal',
+            'number':'10',                    
+            'cep':'55513235',
+            'city':'belem2',
+            'state':'para2',
+        },
+        'card':{
+            'number':'rua tal 1',
+            'name':'10',
+            'expirationDate':'alameda tal',
+            'cvc':'353',
+        }                         
+    },{
+        'name': 'Peter USA',
+        'cpf': '398429384-12', 
+        'email': 'senha1',
+        'phoneNumber': '32280873',
+        'income': 1213123,
+        'address':{
+            'street':'rua tal 1',
+            'complement':'alameda tal',
+            'number':'10',                    
+            'cep':'55513235',
+            'city':'belem2',
+            'state':'para2',
+        },
+        'card':{
+            'number':'rua tal 1',
+            'name':'10',
+            'expirationDate':'alameda tal',
+            'cvc':'343',
+        }                         
+    },{
+        'name': 'Julia Argentina',
+        'cpf': '398429384-12', 
+        'email': 'senha1',
+        'phoneNumber': '(81) 999554664',
+        'income': 12500.00,
+        'address':{
+            'street':'rua tal 1',
+            'complement':'alameda tal',
+            'number':'10',                    
+            'cep':'55513235',
+            'city':'belem2',
+            'state':'para2',
+        },
+        'card':{
+            'number':'1111 111',
+            'name':'10',
+            'expirationDate':'alameda tal',
+            'cvc':'333',
+        }                         
+    },
+]);
