@@ -43,8 +43,11 @@ class FraudAnalysisController {
 
         try {
             const analysis = await fraudAnalysis.findById(id);
-            if( !analysis || analysis.status === ANALYSIS_STATUS.APROVADA
-                || analysis.status === ANALYSIS_STATUS.REJEITADA ) 
+            if( !analysis ) {
+                return res.status(404).send({ message: 'Fraud Analysis ID not found'});
+            }
+            if ( analysis.status === ANALYSIS_STATUS.APROVADA
+                || analysis.status === ANALYSIS_STATUS.REJEITADA )
             {
                 return res.status(400).send({ message: 'Fraud Analysis Status cannot be updated' });
             }
