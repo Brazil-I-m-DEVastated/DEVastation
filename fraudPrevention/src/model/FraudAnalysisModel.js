@@ -10,12 +10,13 @@ const fraudSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        analysis: {
+        status: {
             type: String,
             enum: ['Em Análise', 'Aprovada', 'Rejeitada'],
             default: 'Em Análise'
         }
-    }
+    },
+    { versionKey: false }
 );
 
 const fraudAnalysis = mongoose.model('fraudAnalysis', fraudSchema);
