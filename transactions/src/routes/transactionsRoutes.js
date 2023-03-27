@@ -6,6 +6,7 @@ import 'express-async-errors';
 const router = express.Router();
 
 router
-    .get('transactions/:id', TransactionController.getById);
+    .get('transactions/:id', TransactionController.getById)
+    .post('transactions', TransactionController.create);
 
 export default router;
