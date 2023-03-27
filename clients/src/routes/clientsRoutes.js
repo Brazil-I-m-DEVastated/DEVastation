@@ -6,8 +6,8 @@ import ClientsController from '../controllers/clientsController.js';
 const router = express.Router();
 
 router
-    .get('/api/clients', ClientsController.listClients);
-//   .get('/api/accounts/:id', AccountsController.listarAccountPorId)
+    .get('/api/clients', ClientsController.listClients)
+    .get('/api/clients/:id', ClientsController.listClientById);
 //   .post('/api/admin/accounts', AccountsController.inserirAccount)
 //   .put('/api/admin/accounts/:id', AccountsController.atualizarAccount)
 //   .delete('/api/admin/accounts/:id', AccountsController.excluirAccount)

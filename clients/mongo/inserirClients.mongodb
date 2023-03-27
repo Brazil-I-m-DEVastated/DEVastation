@@ -1,7 +1,7 @@
 use('clients');
 // db.createCollection('clientsInfo');
 
-db.clientsInfo.insertMany([
+db.clientsinfos.insertMany([
     {
         'name': 'Isac Queiroz',
         'cpf': '398429384-12', 

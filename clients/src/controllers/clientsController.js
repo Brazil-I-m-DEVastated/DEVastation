@@ -34,20 +34,25 @@ class ClientsController {
     // };
     // // foi inserido uma Usuário
 
-    // static listClientById = (req, res) => {
-    //     const { id } = req.params;
-    //     Clients.findById(id, (err, category) => {
-    //         if (err) {
-    //             res.status(404).send({
-    //                 message: `${err.message} - Id de usuário não localizado.`,
-    //             });
-    //         } else {
-    //             res.status(200).send(category);
-    //         }
-    //     }).select('name cpf');
+    static listClientById = async (req, res) => {
+        const { id } = req.params;
+        const filter = ' name cpf email phoneNumber income address';
 
-    // busquei by id
-    // };
+        try{
+            const client = await Clients.findById(id).select(filter);
+            if(!client){
+                return res.status(404).send({ message: 'Client not found' });  
+                
+            }
+            // const {card:_, ...clientFiltrado} = client.dataValues;
+            return res.status(200).send(client);
+        }catch(error){
+            return res.status(500).send( {message: error.message});
+    
+        }
+        
+    //busquei by id
+    };
 
     // static atualizarAccount = (req, res) => {
     //     const { id } = req.params;

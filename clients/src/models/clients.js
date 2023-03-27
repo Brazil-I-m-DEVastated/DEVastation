@@ -25,7 +25,7 @@ const cardSchema = new mongoose.Schema(
 
 const clientSchema = new mongoose.Schema(
     {
-        _id: false,
+        
         name: { type: String, required: true },
         cpf: { type: String, required: true },
         email: { type: String, required: true  },
