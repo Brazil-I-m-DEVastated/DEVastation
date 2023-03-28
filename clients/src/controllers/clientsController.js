@@ -43,9 +43,9 @@ class ClientsController {
             if(cardFound.length < 1 ){
                 return res.status(404).send({ message: 'Card not found' });
             }
-            const idClient = cardFound[0]._id;
+            const clientId = cardFound[0]._id;
             const income = cardFound[0].income;
-            return res.status(200).json({idClient, income});
+            return res.status(200).json({clientId, income});
             
             
         }catch(error){
