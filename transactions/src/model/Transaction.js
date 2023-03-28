@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const transactionSchema = new mongoose.Schema(
     {
         transactionValue: {
-            type: Number,
+            type: mongoose.Types.Decimal128,
             required: true
         },
 
