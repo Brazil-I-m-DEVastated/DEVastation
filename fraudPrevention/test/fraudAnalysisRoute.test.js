@@ -1,12 +1,8 @@
-// import axios from 'axios';
+import axios from 'axios';
 import request from 'supertest';
 import { jest, describe, it, expect, afterAll } from '@jest/globals';
 import app from '../src/app.js';
 import mongoose from 'mongoose';
-
-// jest.unstable_mockModule('axios', () => ({
-//     patch: jest.fn(() => {}),
-// }));
 
 afterAll((done) => {
     mongoose.connection.close();
@@ -52,20 +48,20 @@ describe('GET by ID in /fraudanalysis/:id', () => {
     });
 });
 
-// describe('PATCH in /fraudanalysis/:id', () => {
-//     it('Must update a Fraud Analysis', async () => {
-//         // axios.patch.mockResolvedValueOnce({test: true});
-//         const response = await request(app)
-//             .patch(`/fraudanalysis/${idResponse}`)
-//             .send({
-//                 status: 'Aprovada'
-//             });
-//             // .expect(200);
-            
-      
-//         expect(response.body.status).toEqual('Aprovada');
-//     });
-// });
+describe('PATCH in /fraudanalysis/:id', () => {
+    it('Must update a Fraud Analysis', async () => {
+        axios.patch = jest.fn(() => Promise.resolve(
+            { status:200 }
+        ));
+        const response = await request(app)
+            .patch(`/fraudanalysis/${idResponse}`)
+            .send({
+                status: 'Aprovada'
+            })
+            .expect(204);
+        
+    });
+});
 
 describe('POST in /fraudanalysis', () => {
     it('Should create a new Fraud Analysis', async () => {
