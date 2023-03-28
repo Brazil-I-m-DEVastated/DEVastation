@@ -30,7 +30,7 @@ const clientSchema = new mongoose.Schema(
         cpf: { type: String, required: true },
         email: { type: String, required: true  },
         phoneNumber: { type: String, required: true },
-        income: { type: mongoose.Types.Decimal128, required: true },
+        income: { type: Number, required: true },
         address: { type: addressSchema, required: true },
         card: { type: cardSchema , required: true },
     },

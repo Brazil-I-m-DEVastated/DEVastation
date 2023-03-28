@@ -45,8 +45,7 @@ class ClientsController {
             }
             const idClient = cardFound[0]._id;
             const income = cardFound[0].income;
-            const idCard = cardFound[0].card._id;
-            return res.status(200).json({idClient, income, idCard});
+            return res.status(200).json({idClient, income});
             
             
         }catch(error){

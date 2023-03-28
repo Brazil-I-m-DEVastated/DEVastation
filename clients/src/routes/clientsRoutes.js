@@ -7,6 +7,6 @@ const router = express.Router();
 router
     .get('/clients', ClientsController.listClients)
     .get('/clients/:id', ClientsController.listClientById)
-    .get('/clientverifycard', ClientsController.verifyCard);
+    .post('/clients/verifycard', ClientsController.verifyCard);
 
 export default router;
