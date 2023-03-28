@@ -1,5 +1,6 @@
 import fraudAnalysis from '../model/FraudAnalysisModel.js';
 import ANALYSIS_STATUS from '../constants/constants.js';
+import updateTransactionStatus from '../helper/fetchTransactions.js';
 
 class FraudAnalysisController {
     static getAllAwaiting = async (_req, res) => {
@@ -52,6 +53,7 @@ class FraudAnalysisController {
                 return res.status(400).send({ message: 'Fraud Analysis Status cannot be updated' });
             }
             await fraudAnalysis.findByIdAndUpdate(id, {status});
+            await updateTransactionStatus(analysis.transaction_id, status);
             return res.status(204).end();
         } catch (err) {
             return res.status(500).send({ message: err.message });
