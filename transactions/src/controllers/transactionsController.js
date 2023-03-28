@@ -1,4 +1,5 @@
 import Transaction from '../model/Transaction.js';
+import { fetchVerifyCardAndGetClientId, fetchClientIncome } from '../helpers/fetchAPI.js';
 
 class TransactionController {
     static getById = async (req, res) => {
@@ -10,10 +11,29 @@ class TransactionController {
     };
 
     static create = async (req, res) => {
-        const transaction = new Transaction(req.body);
-        await transaction.save();
+        let transactionStatus = '';
+        const { cardInfo, transactionValue } = req.body;
         
-        return res.status(201).json(transaction);
+        const { clientId, cardId } = fetchVerifyCardAndGetClientId(cardInfo);
+        const clientIncome = fetchClientIncome(clientId, cardId);
+
+        if (transactionValue > (clientIncome/2)) {
+            transactionStatus = 'Em Análise';
+        } else {
+            transactionStatus = 'Aprovada';
+        }
+
+        const transaction = {
+            clientId,
+            transactionValue,
+            status: transactionStatus,
+        };
+        
+        const newTransaction = new Transaction(transaction);
+        
+        await newTransaction.save();
+        
+        return res.status(201).json(newTransaction);
     };
 
     static updateStatus = async (req, res) => {
