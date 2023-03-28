@@ -21,7 +21,7 @@ db.clientsinfos.insertMany([
             'name':'10',
             'expirationDate':'alameda tal',
             'cvc':'765',
-        }                         
+        }                     
     },{
         'name': 'Carlos Brazil',
         'cpf': '398429384-12', 
@@ -41,7 +41,7 @@ db.clientsinfos.insertMany([
             'name':'10',
             'expirationDate':'alameda tal',
             'cvc':'656',
-        }                         
+        }                      
     },{
         'name': 'João chile',
         'cpf': '398429384-12', 
@@ -61,7 +61,7 @@ db.clientsinfos.insertMany([
             'name':'10',
             'expirationDate':'alameda tal',
             'cvc':'353',
-        }                         
+        }                    
     },{
         'name': 'Peter USA',
         'cpf': '398429384-12', 
@@ -81,7 +81,7 @@ db.clientsinfos.insertMany([
             'name':'10',
             'expirationDate':'alameda tal',
             'cvc':'343',
-        }                         
+        }                       
     },{
         'name': 'Julia Argentina',
         'cpf': '398429384-12', 
@@ -101,6 +101,6 @@ db.clientsinfos.insertMany([
             'name':'10',
             'expirationDate':'alameda tal',
             'cvc':'333',
-        }                         
+        }                    
     },
 ]);
