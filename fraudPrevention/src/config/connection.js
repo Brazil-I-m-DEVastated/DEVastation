@@ -1,8 +1,10 @@
 import mongoose from 'mongoose';
 
-const DB_HOST = process.env.NODE_ENV === 'test' ? '127.0.0.1' : process.env.DB_HOST;
+const DB_HOST = process.env.DB_HOST || 'localhost';
+const DB_PORT = process.env.DB_PORT || '27017';
 
-const URL = `//admin:secret@${DB_HOST}:27017/ecomm-account?authSource=admin`;
+const URL = 
+`mongodb://admin:secret@${DB_HOST}:${DB_PORT}/DEVastation-fraudAnalysis?authSource=admin`;
 
 mongoose.connect(URL);
 
