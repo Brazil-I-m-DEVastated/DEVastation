@@ -13,13 +13,37 @@ afterAll(async () => {
 describe('GET em /clients', () => {
     it('Deve retornar todas os clientes', async () => {
         await request(app)
-            .get('/api/categories')
+            .get('/clients')
             .set('Accept', 'application/json')
-            // .expect('content-type', /json/)
+            .expect('content-type', /json/)
             .expect(200);
     });
-}); 
+});
+describe('GET em /clients/id', () => {
+    it('Deve retornar apenas um cliente', async () => {
+        await request(app)
+            .get('/clients/6422df5f09b29a1283b786e3')
+            .set('Accept', 'application/json')
+            .expect('content-type', /json/)
+            .expect(200);
+    });
+});
 
+describe('GET em /clientsVerifyCard', () => {
+    it('Deve retornar um id de cliente que teve um cartão válido', async () => {
+        await request(app)
+            .get('/clientVerifyCard')
+            .send({
+                number: "rua tal 1",
+                name: "10",
+                expirationDate: "alameda tal",
+                cvc: "765"
+            })
+            .set('Accept', 'application/json')
+            .expect('content-type', /json/)
+            .expect(200);
+    });
+});
 // let idResposta;
 // describe('POST em /api/admin/categories', () => {
 //     it('Deve criar uma categoria', async () => {

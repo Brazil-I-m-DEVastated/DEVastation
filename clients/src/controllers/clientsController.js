@@ -71,7 +71,7 @@ class ClientsController {
             const idCard = cardFound[0].card._id;
             return res.status(200).json({idClient, income, idCard});
             // const {card:_, ...clientFiltrado} = client.dataValues;
-              
+            
         }catch(error){
             return res.status(500).send( {message: error.message});
     
