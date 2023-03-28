@@ -2,8 +2,6 @@
 const errorHandler = (err, req, res, _next) => {
     console.log(err, 'estou aqui');
 
-    console.log(err.errors.status.properties.message);
-
     if (err.message.includes('|')) {
         const [code, message] = err.message.split('|');
         return res.status(Number(code)).json({ message });
