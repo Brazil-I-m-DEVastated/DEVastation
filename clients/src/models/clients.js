@@ -31,8 +31,8 @@ const clientSchema = new mongoose.Schema(
         email: { type: String, required: true  },
         phoneNumber: { type: String, required: true },
         income: { type: Number, required: true }, // ALTERAR PARA UM TIPO MAIS CORRETO (DINHEIRO)
-        address: { type: cardSchema, required: true },
-        card: { type: addressSchema, required: true },
+        address: { type: addressSchema, required: true },
+        card: { type: cardSchema , required: true },
     },
 );
 

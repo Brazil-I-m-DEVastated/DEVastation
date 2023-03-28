@@ -7,7 +7,9 @@ const router = express.Router();
 
 router
     .get('/api/clients', ClientsController.listClients)
-    .get('/api/clients/:id', ClientsController.listClientById);
+    .get('/api/clients/:id', ClientsController.listClientById)
+    .get('/api/clientVerifyCard', ClientsController.verifyCard);
+//   .get('/api/client/:idClient/card/:idCard', ClientsController.getIncomeByIdCardAndIdClient);
 //   .post('/api/admin/accounts', AccountsController.inserirAccount)
 //   .put('/api/admin/accounts/:id', AccountsController.atualizarAccount)
 //   .delete('/api/admin/accounts/:id', AccountsController.excluirAccount)

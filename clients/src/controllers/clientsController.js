@@ -54,6 +54,35 @@ class ClientsController {
     //busquei by id
     };
 
+    static verifyCard = async (req, res) => {
+        try {
+            const info = req.body;
+            const client = await Clients.findOne({name: info.name})
+            
+            if (client.card.cvc.includes(info.cvc) && client.card.number.includes(info.number) 
+            && client.card.expirationDate.includes(info.expirationDate)) {
+                return res.status(200).send({message: `${client.id}` })
+            }
+        } catch (error) {
+            return res.status(400).send({message: `${message.error}`})
+        }
+    }
+
+    // static getIncomeByIdCardAndIdClient = async (req, res) => {
+    //     try {
+    //         const idCard = req.params.idCard
+    //         const idClient = req.params.idClient;
+    //         console.log(idCard);
+    //         const client = await Clients.findById(idClient);
+    //         console.log(client.card[0]);
+    //         //const cardX = client.card;
+    //         //return res.status(200).json({ message: `${cardX.Income}` });
+    //         return res.status(200);
+    //     } catch (error) {
+    //         return res.status(500).send({ message: error.message });
+    //     }
+    // };
+
     // static atualizarAccount = (req, res) => {
     //     const { id } = req.params;
 
