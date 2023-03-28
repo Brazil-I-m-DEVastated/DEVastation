@@ -62,17 +62,16 @@ class ClientsController {
             'card.expirationDate': cardValidate.expirationDate,'card.cvc': cardValidate.cvc};
         try{
             const cardFound = await Clients.find(cardFilter);
+            if(cardFound === '[]'){
+                return res.status(404).send({ message: 'Card not found' });
+            }
+            console.log(cardFound);
             const idClient = cardFound[0]._id;
             const income = cardFound[0].income;
             const idCard = cardFound[0].card._id;
-
-
-            if(!cardFound){
-                return res.status(404).send({ message: 'Card not found' });  
-                
-            }
-            // const {card:_, ...clientFiltrado} = client.dataValues;
             return res.status(200).json({idClient, income, idCard});
+            // const {card:_, ...clientFiltrado} = client.dataValues;
+              
         }catch(error){
             return res.status(500).send( {message: error.message});
     
