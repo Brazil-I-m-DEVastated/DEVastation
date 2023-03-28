@@ -1,10 +1,8 @@
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
-import db from './config/connection';
+// import { errorHandler } from '../src/middlewares/index.js';
+import db from './config/connection.js';
 import routes from './routes/index.js';
-import * as dotenv from 'dotenv';
-
-dotenv.config();
 
 // import { createRequire } from 'node:module';
 // const require = createRequire(import.meta.url);
@@ -21,6 +19,7 @@ const app = express();
 // app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
 app.use(express.json());
+// app.use(errorHandler);
 
 routes(app);
 
