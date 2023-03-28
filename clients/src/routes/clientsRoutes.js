@@ -6,9 +6,9 @@ import ClientsController from '../controllers/clientsController.js';
 const router = express.Router();
 
 router
-    .get('/api/clients', ClientsController.listClients)
-    .get('/api/clients/:id', ClientsController.listClientById)
-    .get('/api/clientVerifyCard', ClientsController.verifyCard);
+    .get('/clients', ClientsController.listClients)
+    .get('/clients/:id', ClientsController.listClientById)
+    .get('/clientVerifyCard', ClientsController.verifyCard);
 //   .get('/api/client/:idClient/card/:idCard', ClientsController.getIncomeByIdCardAndIdClient);
 //   .post('/api/admin/accounts', AccountsController.inserirAccount)
 //   .put('/api/admin/accounts/:id', AccountsController.atualizarAccount)
