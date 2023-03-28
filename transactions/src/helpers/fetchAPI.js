@@ -1,25 +1,22 @@
 import axios from 'axios';
 
-const fetchVerifyCardAndGetClientId = async(cardInfo) => {
+const verifyClient = async(cardInfo) => {
     try {
         const response = await axios.post('/clientVerifyCard', cardInfo);
         console.log(response);
 
-        return response;
+        return response.data;
     } catch (error) {
-        throw new Error(error.message); //?
+        throw new Error(error.message);
     }
 };
 
-const fetchClientIncome = async (clientId, cardId) => {
+const openFraudAnalysis = async (client_id, transaction_id) => {
     try {
-        const response = await axios.get(`/client/${clientId}/card/${cardId}`);
-        console.log(response);
-    
-        return response;
+        await axios.post('/fraudanalysis', { client_id, transaction_id });
     } catch (error) {
-        throw new Error(error.message); //?
+        throw new Error(error.message);
     }
 };
 
-export { fetchVerifyCardAndGetClientId, fetchClientIncome };
+export { verifyClient, openFraudAnalysis };
