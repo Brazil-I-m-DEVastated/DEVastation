@@ -10,19 +10,25 @@ afterAll(async () => {
     await db.close();
 });
 
+let id;
+let datasCard;
 describe('GET em /clients', () => {
     it('Deve retornar todas os clientes', async () => {
-        await request(app)
+        const response = await request(app)
             .get('/clients')
             .set('Accept', 'application/json')
             .expect('content-type', /json/)
             .expect(200);
+        id = response.body[0]._id;
+        datasCard= response.body[0].card;
     });
 });
+
+
 describe('GET em /clients/id', () => {
     it('Deve retornar apenas um cliente', async () => {
         await request(app)
-            .get('/clients/6422df5f09b29a1283b786e3')
+            .get(`/clients/${id}`)
             .set('Accept', 'application/json')
             .expect('content-type', /json/)
             .expect(200);
@@ -33,12 +39,7 @@ describe('GET em /clientsVerifyCard', () => {
     it('Deve retornar um id de cliente que teve um cartão válido', async () => {
         await request(app)
             .get('/clientVerifyCard')
-            .send({
-                number: "rua tal 1",
-                name: "10",
-                expirationDate: "alameda tal",
-                cvc: "765"
-            })
+            .send(datasCard)
             .set('Accept', 'application/json')
             .expect('content-type', /json/)
             .expect(200);

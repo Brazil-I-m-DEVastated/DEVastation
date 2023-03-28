@@ -1,6 +1,5 @@
 import express from 'express';
 import clients from './clientsRoutes.js';
-// import '../security/estrategiaAutenticacao.js';
 
 const routes = (app) => {
     app.route('/').get((_req, res) => {

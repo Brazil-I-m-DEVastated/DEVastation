@@ -7,7 +7,7 @@ const mongoURL =  `mongodb://admin:secret@${DB_HOST}:${DB_PORT}/clients?authSour
 mongoose.connect(mongoURL);
 
 
-// confirmar se é numero ou mongo
+
 let db = mongoose.connection;
 
 export default db;
