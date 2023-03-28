@@ -1,5 +1,5 @@
 import Transaction from '../model/Transaction.js';
-import { fetchVerifyCardAndGetClientId, fetchClientIncome } from '../helpers/fetchAPI.js';
+import { verifyClient, openFraudAnalysis } from '../helpers/fetchAPI.js';
 
 class TransactionController {
     static getById = async (req, res) => {
@@ -11,29 +11,32 @@ class TransactionController {
     };
 
     static create = async (req, res) => {
-        let transactionStatus = '';
         const { cardInfo, transactionValue } = req.body;
         
-        const { clientId, cardId } = fetchVerifyCardAndGetClientId(cardInfo);
-        const clientIncome = fetchClientIncome(clientId, cardId);
-
-        if (transactionValue > (clientIncome/2)) {
-            transactionStatus = 'Em Análise';
-        } else {
-            transactionStatus = 'Aprovada';
-        }
-
+        const { clientId, income } = verifyClient(cardInfo);
+        
         const transaction = {
             clientId,
             transactionValue,
-            status: transactionStatus,
         };
-        
-        const newTransaction = new Transaction(transaction);
-        
-        await newTransaction.save();
-        
-        return res.status(201).json(newTransaction);
+
+        if (transactionValue > (income/2)) {
+
+            const transactionInAnalysis = new Transaction({ ...transaction, status: 'Em Análise'});
+            
+            await transactionInAnalysis.save();
+
+            openFraudAnalysis(clientId, transactionInAnalysis._id);
+            
+            return res.status(303).json(transactionInAnalysis);
+        } else {
+            const transactionApproved = new Transaction({ ...transaction, status: 'Aprovada'});
+            
+            await transactionApproved.save();
+
+            return res.status(201).json(transactionApproved);
+        }
+
     };
 
     static updateStatus = async (req, res) => {
@@ -41,9 +44,6 @@ class TransactionController {
         const { status } = req.body;
 
         const transaction = await Transaction.findById(id);
-        console.log(status);
-        console.log(transaction.status);
-
 
         if ( transaction.status === 'Em Análise') {
 
