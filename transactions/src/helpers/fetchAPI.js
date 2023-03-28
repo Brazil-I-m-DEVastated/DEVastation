@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const verifyClient = async(cardInfo) => {
     try {
-        const response = await axios.post('/clientVerifyCard', cardInfo);
+        const response = await axios.post('/clients/verifycard', cardInfo);
         console.log(response);
 
         return response.data;
