@@ -9,7 +9,7 @@ const updateTransactionStatus = async (transactionId, status) => {
     const data = { status };
     const response = await axios.patch(url, data);
     if(response.status !== 200){
-        throw new Error('Transaction could not be updated');
+        throw new Error('422|Transaction could not be updated');
     }
     return true;
 };

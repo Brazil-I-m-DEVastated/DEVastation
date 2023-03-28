@@ -1,5 +1,6 @@
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
+// import { errorHandler } from '../src/middlewares/index.js';
 import db from './config/connection.js';
 import routes from './routes/index.js';
 
@@ -18,6 +19,7 @@ const app = express();
 // app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
 app.use(express.json());
+// app.use(errorHandler);
 
 routes(app);
 

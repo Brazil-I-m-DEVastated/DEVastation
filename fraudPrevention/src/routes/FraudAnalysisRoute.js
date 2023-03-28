@@ -1,6 +1,8 @@
 import express from 'express';
 import FraudAnalysisController from '../controller/FraudAnalysisController.js';
 
+import 'express-async-errors';
+
 const router = express.Router();
 
 router
