@@ -50,23 +50,49 @@ class ClientsController {
             return res.status(500).send( {message: error.message});
     
         }
+    
         
     //busquei by id
     };
 
     static verifyCard = async (req, res) => {
-        try {
-            const info = req.body;
-            const client = await Clients.findOne({name: info.name})
-            
-            if (client.card.cvc.includes(info.cvc) && client.card.number.includes(info.number) 
-            && client.card.expirationDate.includes(info.expirationDate)) {
-                return res.status(200).send({message: `${client.id}` })
+        const cardValidate = req.body;
+
+        const cardFilter = { 'card.name': cardValidate.name, 'card.number': cardValidate.number, 
+            'card.expirationDate': cardValidate.expirationDate,'card.cvc': cardValidate.cvc};
+        try{
+            const cardFound = await Clients.find(cardFilter);
+            const idClient = cardFound[0]._id;
+            const income = cardFound[0].income;
+            const idCard = cardFound[0].card._id;
+
+
+            if(!cardFound){
+                return res.status(404).send({ message: 'Card not found' });  
+                
             }
-        } catch (error) {
-            return res.status(400).send({message: `${message.error}`})
+            // const {card:_, ...clientFiltrado} = client.dataValues;
+            return res.status(200).json({idClient, income, idCard});
+        }catch(error){
+            return res.status(500).send( {message: error.message});
+    
         }
-    }
+    
+    };
+    
+    // static verifyCard = async (req, res) => {
+    //     try {
+    //         const info = req.body;
+    //         const client = await Clients.card.findOne({cvc: info.cvc})
+            
+    //         if (client.card.cvc.includes(info.cvc) && client.card.number.includes(info.number) 
+    //         && client.card.expirationDate.includes(info.expirationDate)) {
+    //             return res.status(200).send({message: `${client.id}` })
+    //         }
+    //     } catch (error) {
+    //         return res.status(400).send({message: `${message.error}`})
+    //     }
+    // };
 
     // static getIncomeByIdCardAndIdClient = async (req, res) => {
     //     try {

@@ -18,7 +18,7 @@ db.clientsinfos.insertMany([
         },
         'card':{
             'number':'rua tal 1',
-            'name':'10',
+            'name':'isac diferente',
             'expirationDate':'alameda tal',
             'cvc':'765',
         }                     
