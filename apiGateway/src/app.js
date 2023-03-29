@@ -1,20 +1,23 @@
 import express from 'express';
-import rateLimit from 'express-rate-limit';
+// import rateLimit from 'express-rate-limit';
 import clientsRouter from './routes/clientsRoutes.js';
 import transactionsRouter from './routes/transactionsRoutes.js';
 import fraudPreventionRouter from './routes/fraudPreventionRoutes.js';
+import './middlewares/auth.js';
+import { authBearer } from './middlewares/auth.js';
+import apiGatewayRouter from './routes/apiGatewayRoutes.js';
 
 const app = express();
 
 app.use(express.json());
 
-const limiter = rateLimit({ windowMs: 30 * 1000, max: 1, });
+// const limiter = rateLimit({ windowMs: 30 * 1000, max: 1, });
 
-app.use('/', limiter);
+// app.use('/', limiter);
 
-app.use('/', clientsRouter);
-app.use('/', transactionsRouter);
-app.use('/', fraudPreventionRouter);
-
+app.use('/', apiGatewayRouter);
+app.use('/', authBearer, clientsRouter);
+app.use('/', authBearer, transactionsRouter);
+app.use('/', authBearer, fraudPreventionRouter);
 
 export default app;
