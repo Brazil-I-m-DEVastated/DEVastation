@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 const errorHandler = (err, req, res, _next) => {
+
     console.log(err);
 
     if (err.message.includes('|')) {
