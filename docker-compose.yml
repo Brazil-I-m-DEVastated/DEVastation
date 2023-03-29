@@ -3,7 +3,7 @@ services:
   mongo:
     image: mongo:5
     volumes:
-      - db-mongo
+      - db-mongo:/data/db
     container_name: devastation-mongo
     restart: always
     ports:
@@ -19,6 +19,18 @@ services:
       - ./clients:/node-app
     ports:
       - 3001:3001
+    environment:
+      - DB_HOST=mongo
+      - DB_PORT=27017
+      - DB_USER=admin
+      - DB_PASSWORD=secret
+      - CLIENTS_PORT=3001
+      - FRAUDPREVENTION_HOST=fraudprevention
+      - FRAUDPREVENTION_PORT=3002
+      - TRANSACTIONS_HOST=transactions
+      - TRANSACTIONS_PORT=3003
+      - RABBIT_HOST=rabbit
+      - RABBIT_PORT=5672
 
   fraudprevention:
     build: ./fraudPrevention/
@@ -27,6 +39,18 @@ services:
       - ./fraudPrevention:/node-app
     ports:
       - 3002:3002
+    environment:
+      - DB_HOST=mongo
+      - DB_PORT=27017
+      - DB_USER=admin
+      - DB_PASSWORD=secret
+      - CLIENTS_HOST=clients
+      - CLIENTS_PORT=3001
+      - FRAUDPREVENTION_PORT=3002
+      - TRANSACTIONS_HOST=transactions
+      - TRANSACTIONS_PORT=3003
+      - RABBIT_HOST=rabbit
+      - RABBIT_PORT=5672
 
   transactions:
     build: ./transactions/
@@ -35,7 +59,18 @@ services:
       - ./transactions:/node-app
     ports:
       - 3003:3003
+    environment:
+      - DB_HOST=mongo
+      - DB_PORT=27017
+      - DB_USER=admin
+      - DB_PASSWORD=secret
+      - CLIENTS_HOST=clients
+      - CLIENTS_PORT=3001
+      - FRAUDPREVENTION_HOST=fraudprevention
+      - FRAUDPREVENTION_PORT=3002
+      - TRANSACTIONS_PORT=3003
+      - RABBIT_HOST=rabbit
+      - RABBIT_PORT=5672
 
 volumes:
   db-mongo:
-
