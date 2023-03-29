@@ -13,7 +13,7 @@ class TransactionController {
     static create = async (req, res) => {
         const { cardInfo, transactionValue } = req.body;
         
-        const { clientId, income } = verifyClient(cardInfo);
+        const { clientId, income } = await verifyClient(cardInfo);
         
         const transaction = {
             clientId,
