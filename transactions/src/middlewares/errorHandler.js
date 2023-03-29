@@ -1,6 +1,5 @@
 // eslint-disable-next-line no-unused-vars
 const errorHandler = (err, req, res, _next) => {
-    console.log(err, 'estou aqui');
 
     if (err.message.includes('|')) {
         const [code, message] = err.message.split('|');
