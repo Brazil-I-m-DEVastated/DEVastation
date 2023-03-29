@@ -1,3 +1,6 @@
 node_modules
 .env
 coverage
+.npmrc
+
+package-lock.json
