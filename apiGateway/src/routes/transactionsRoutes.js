@@ -1,5 +1,5 @@
 import express from 'express';
-import { createProxyMiddleware } from 'http-proxy-middleware';
+import httpProxy from 'express-http-proxy';
 
 const transactionsUrl = 
   `http://${process.env.TRANSACTIONS_HOST}:${process.env.TRANSACTIONS_PORT}`;
@@ -7,8 +7,8 @@ const transactionsUrl =
 const transactionsRouter = express.Router();
 
 transactionsRouter
-    .get('/transactions/:id', createProxyMiddleware({ target: transactionsUrl}))
-    .post('/transactions', createProxyMiddleware({ target: transactionsUrl}))
-    .patch('/transactions/:id', createProxyMiddleware({ target: transactionsUrl}));
+    .get('/transactions/:id', httpProxy(transactionsUrl))
+    .post('/transactions', httpProxy(transactionsUrl))
+    .patch('/transactions/:id', httpProxy(transactionsUrl));
 
 export default transactionsRouter;
