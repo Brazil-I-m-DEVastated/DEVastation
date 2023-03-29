@@ -18,8 +18,8 @@ db.once('open', () => {
 const app = express();
 app.use(express.json());
 
-app.use('/api-docs', swaggerUi.serve)
-    .get('/api-docs', swaggerUi.setup(swaggerDocument));
+app.use('/transactions/docs', swaggerUi.serve)
+    .get('/transactions/docs', swaggerUi.setup(swaggerDocument));
 
 app.use(transactionsRoutes);
 app.use(errorHandler);
