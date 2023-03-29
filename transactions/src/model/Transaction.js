@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import TRANSACTION_STATUS from '../constants/constants.js';
 
 const transactionSchema = new mongoose.Schema(
     {
@@ -15,10 +16,14 @@ const transactionSchema = new mongoose.Schema(
         status: {
             type: String,
             required: true,
-            enum: ['Em Análise', 'Aprovada', 'Rejeitada']
+            enum: [
+                TRANSACTION_STATUS.EM_ANALISE, 
+                TRANSACTION_STATUS.APROVADA, 
+                TRANSACTION_STATUS.REJEITADA
+            ]
         }
     },
-    
+
     { versionKey: false }
 );
 

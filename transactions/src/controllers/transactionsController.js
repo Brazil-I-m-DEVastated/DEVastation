@@ -1,5 +1,6 @@
 import Transaction from '../model/Transaction.js';
 import { verifyClient, openFraudAnalysis } from '../helpers/fetchAPI.js';
+import TRANSACTION_STATUS from '../constants/constants.js';
 
 class TransactionController {
     static getById = async (req, res) => {
@@ -22,7 +23,8 @@ class TransactionController {
 
         if (transactionValue > (income/2)) {
 
-            const transactionInAnalysis = new Transaction({ ...transaction, status: 'Em Análise'});
+            const transactionInAnalysis = new Transaction({ ...transaction, 
+                status: TRANSACTION_STATUS.EM_ANALISE });
             
             await transactionInAnalysis.save();
 
@@ -30,7 +32,8 @@ class TransactionController {
             
             return res.status(303).json(transactionInAnalysis);
         } else {
-            const transactionApproved = new Transaction({ ...transaction, status: 'Aprovada'});
+            const transactionApproved = new Transaction({ ...transaction, 
+                status: TRANSACTION_STATUS.APROVADA });
             
             await transactionApproved.save();
 
@@ -45,7 +48,7 @@ class TransactionController {
 
         const transaction = await Transaction.findById(id);
 
-        if ( transaction.status === 'Em Análise') {
+        if ( transaction.status === TRANSACTION_STATUS.EM_ANALISE ) {
 
             const updatedTransaction = await Transaction
                 .findByIdAndUpdate(id, { status }, { new: true });
