@@ -18,7 +18,7 @@ const cardSchema = new mongoose.Schema(
         number: { type: String, required: true },
         name: { type: String, required: true },
         expirationDate: { type: String, required: true },
-        cvc: { type: String, required: true },
+        cvv: { type: String, required: true },
       
     },
 );
