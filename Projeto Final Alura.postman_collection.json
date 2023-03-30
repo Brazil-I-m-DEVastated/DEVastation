@@ -178,7 +178,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"cardInfo\": {\r\n        \"number\": \"5583 6915 6565 4118\",\r\n        \"name\": \"Fernando L S Bernardes\",\r\n        \"expirationDate\": \"28/01/2024\",\r\n        \"cvc\": \"864\"\r\n    },\r\n    \"transactionValue\": 2000000\r\n}",
+							"raw": "{\r\n    \"cardInfo\": {\r\n        \"number\": \"5583 6915 6565 4118\",\r\n        \"name\": \"Fernando L S Bernardes\",\r\n        \"expirationDate\": \"28/01/2024\",\r\n        \"cvv\": \"864\"\r\n    },\r\n    \"transactionValue\": 2000000\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -321,7 +321,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"number\": \"5583 6915 6565 4118\",\r\n    \"name\": \"Fernando L S Bernardes\",\r\n    \"expirationDate\": \"28/01/2024\",\r\n    \"cvc\": \"864\"\r\n}",
+							"raw": "{\r\n    \"number\": \"5583 6915 6565 4118\",\r\n    \"name\": \"Fernando L S Bernardes\",\r\n    \"expirationDate\": \"28/01/2024\",\r\n    \"cvv\": \"864\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

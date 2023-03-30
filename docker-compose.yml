@@ -103,5 +103,6 @@ services:
       - clients
       - fraudprevention
       - transactions
+      - mongo
 volumes:
   db-mongo:
