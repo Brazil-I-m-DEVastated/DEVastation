@@ -3,6 +3,7 @@ import request from 'supertest';
 import { jest, describe, it, expect, afterAll } from '@jest/globals';
 import app from '../src/app.js';
 import mongoose from 'mongoose';
+import ANALYSIS_STATUS from '../src/constants/constants.js';
 
 afterAll((done) => {
     mongoose.connection.close();
@@ -20,8 +21,8 @@ describe('POST in /fraudanalysis', () => {
             })
             .expect(201);
         
-        idResponse = response.body._id;
-        expect(response.body.client_id).toEqual('abc123');
+        idResponse = response.body.id;
+        expect(response.body.status).toEqual(ANALYSIS_STATUS.EM_ANALISE);
     });
 });
 
@@ -32,7 +33,7 @@ describe('GET in /fraudanalysis', () => {
             .set('Accept', 'application/json')
             .expect(200);
         
-        expect(response.body[0].client_id).toEqual('abc123');
+        expect(response.body[0].status).toEqual(ANALYSIS_STATUS.EM_ANALISE);
     });
 });
 
