@@ -1,4 +1,4 @@
-use('clients');
+use('DEVastation-clients');
 
 
 db.clientsinfos.insertMany([
@@ -16,11 +16,11 @@ db.clientsinfos.insertMany([
             'city':'São Luís',
             'state':'MA',
         },
-        'card':{
-            'number':'5583 6915 6565 4118',
-            'name':'Fernando L S Bernardes',
-            'expirationDate':'28/01/2024',
-            'cvc':'864',
+        "card": {
+            "number": "dbcc72f18f061d70d0be5ed861756fa47da2b7322b4fae37be470b46effe4551",
+            "name": "f0595ebc3b5c7cc7c9beb730dacba2756ff765987fef53e5d5361e20a99124be",
+            "expirationDate": "4309d1943106b7aece8d7f7878ca7204",
+            "cvv": "58937b82fe01a89e81d319565e7fa1cb"
         }                     
     },{
         'name': 'Carlos Brazil',
@@ -37,10 +37,10 @@ db.clientsinfos.insertMany([
             'state':'para2',
         },
         'card':{
-            'number':'5560 7012 0741 2234',
-            'name':'Carlos D Brazil',
-            'expirationDate':'28/01/2024',
-            'cvc':'751',
+            "number": "4046eb8aad88239733e9344ed596ea7b036eecddfc81839a6b255f826ceec55d",
+            "name": "031f89658b93f4c03b889efe06d68905",
+            "expirationDate": "4309d1943106b7aece8d7f7878ca7204",
+            "cvv": "cf97b400aa428add37fb19e1f4ea773b",
         }                      
     },{
         'name': 'João chile',
@@ -57,10 +57,10 @@ db.clientsinfos.insertMany([
             'state':'PA',
         },
         'card':{
-            'number':'5181 6909 4569 1358',
-            'name':'João B chile',
-            'expirationDate':'28/08/2024',
-            'cvc':'195',
+            "number": "f07a102ff2042f7ddf821b405d1e83b80d381e07c07f06fff54b5bf37f3ea6aa",
+            "name": "46f5c55781f6bd57d0d7aaa447a70021",
+            "expirationDate": "e025eaddbe1e4b854e2af40e4cd0d416",
+            "cvv": "16a0463f09f6c1c6a8721b7eb58f5803",
         }                    
     },{
         'name': 'Ian Fernando Roberto Ribeiro',
@@ -77,10 +77,10 @@ db.clientsinfos.insertMany([
             'state':'ES',
         },
         'card':{
-            'number':'5195 3984 9804 3571',
-            'name':'Ian F R Ribeiro',
-            'expirationDate':'28/02/2024',
-            'cvc':'179',
+            "number": "c82eedf3d7db7be688285831f19c143fb52c962dd7d2d186744fb2976597b9ad",
+            "name": "772d4f9c88bafe5339c2aed47c38098d",
+            "expirationDate": "388c9fa1181ed0f6d03d79eff7b120ac",
+            "cvv": "fab9c858fdffe5c10871d0a2d05235a7",
         }                       
     },{
         'name': 'Alexandre Anthony Ribeiro',
@@ -97,10 +97,10 @@ db.clientsinfos.insertMany([
             'state':'AL',
         },
         'card':{
-            'number':'5197 9004 2703 2605',
-            'name':'10',
-            'expirationDate':'28/08/2023',
-            'cvc':'507',
+            "number": "62389d719f2095bc52dca26072537281794a80770358e4e51759533e9b80cc16",
+            "name": "c9f374b56cf50b24e6973df1b9769ae2",
+            "expirationDate": "ae693bd715cc306e80092ddc0728d16e",
+            "cvv": "7a459506c6ffe657bfa4b2797d419cd7",
         }                    
     },
 ]);

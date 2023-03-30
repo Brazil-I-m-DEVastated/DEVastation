@@ -10,4 +10,4 @@ COPY . ./
 
 EXPOSE 3003
 
-ENTRYPOINT npm run dev
+ENTRYPOINT npm start

@@ -1,6 +1,9 @@
 import fraudAnalysis from '../model/FraudAnalysisModel.js';
 import ANALYSIS_STATUS from '../constants/constants.js';
 import updateTransactionStatus from '../helper/fetchTransactions.js';
+import generateToken from '../middlewares/auth/auth.js';
+
+const PORT = process.env.FRAUDPREVENTION_PORT || 3002; 
 
 class FraudAnalysisController {
     static getAllAwaiting = async (_req, res) => {
@@ -31,8 +34,34 @@ class FraudAnalysisController {
 
         try {
             const newAnalysis = new fraudAnalysis(fraudInfo);
-            const result = await newAnalysis.save();
-            return res.status(201).json(result);
+            const createdAnalysis = await newAnalysis.save();
+            const responseObject = {
+                id: createdAnalysis.id,
+                status: createdAnalysis.status,
+                links: [
+                    {
+                        rel: 'SELF',
+                        method: 'GET',
+                        href: `http://fraudprevention:${PORT}/fraudanalysis/${createdAnalysis.id}`,
+                    },
+                    {
+                        rel: 'APPROVE',
+                        method: 'PATCH',
+                        href: `http://fraudprevention:${PORT}/fraudanalysis/${createdAnalysis.id}`,
+                        body: {status: ANALYSIS_STATUS.APROVADA},
+                    },
+                    {
+                        rel: 'REJECT',
+                        method: 'PATCH',
+                        href: `http://fraudprevention:${PORT}/fraudanalysis/${createdAnalysis.id}`,
+                        body: {status: ANALYSIS_STATUS.REJEITADA},
+                    },
+                ],
+            };
+            return res
+                .status(201)
+                .location(`/fraudanalysis/${createdAnalysis.id}`)
+                .json(responseObject);
         } catch (err) {
             return res.status(500).send({ message: err.message });
         }
@@ -59,6 +88,16 @@ class FraudAnalysisController {
             return res.status(500).send({ message: err.message });
         }
     };
+
+    static userLogin = async (req, res) => {
+        try {
+            const token = await generateToken(req.user);
+            return res.set('Authorization', token).status(204).send();
+        } catch (err) {
+            return res.status(400).send(err.message);
+        }
+    };
+
 }
 
 export default FraudAnalysisController;
