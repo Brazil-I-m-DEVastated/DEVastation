@@ -41,7 +41,6 @@ passport.use(new BearerStrategy(
     async (token, done) => {
         try {
             const payload = jwt.verify(token, process.env.APP_SECRET);
-            console.log(token);
             done(null, payload, { token });
         } catch (err) {
             done(err);
