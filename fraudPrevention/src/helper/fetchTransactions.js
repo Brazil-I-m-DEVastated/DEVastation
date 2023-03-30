@@ -6,7 +6,6 @@ const TRANSACTIONS_BASE_URL = `http://${TRANSACTIONS_HOST}:${TRANSACTIONS_PORT}/
 
 const updateTransactionStatus = async (transactionId, status) => {
     const token = await authenticateConsumer('fraud', 'aloha');
-    console.log('token: ', token);
     const url = `${TRANSACTIONS_BASE_URL}/${transactionId}`;
     const data = { status };
     const response = await axios.patch(url, data, { headers: {
@@ -22,7 +21,6 @@ const authenticateConsumer = async (consumerName, password) => {
     const url = `${TRANSACTIONS_BASE_URL}/login`;
     const data = { consumerName, password };
     const response = await axios.post(url, data);
-    console.log(response.headers);
     return response.headers.getAuthorization();
 };
 

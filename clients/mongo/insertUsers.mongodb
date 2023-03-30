@@ -1,4 +1,4 @@
-use('devastation-transactions');
+use('DEVastation-clients');
 
 db.consumers.insertMany([
     {
