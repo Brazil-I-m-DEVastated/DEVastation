@@ -23,7 +23,6 @@ const transactionSchema = new mongoose.Schema(
             ]
         }
     },
-
     { versionKey: false }
 );
 
