@@ -25,19 +25,56 @@ paths:
       summary: create and validate a transaction
       security:
         - auth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                transactionValue:
+                  type: number
+                cardInfo:
+                  type: object
+                  properties:
+                    number: 
+                      type: string
+                    name: 
+                      type: string
+                    expirationDate: 
+                      type: string
+                    cvv: 
+                      type: string
+                      
+              
       responses:
         '201':
           description: Created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Transaction'
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    type: string
+                  links: 
+                    type: object
+                    
         '303':
           description: See Other
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Transaction'
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    type: string
+                  links: 
+                    type: object
         '401':
           description: Unauthorized
           content:
