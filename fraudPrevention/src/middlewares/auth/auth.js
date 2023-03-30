@@ -48,7 +48,7 @@ passport.use(new BearerStrategy(
             console.log('hello Bearer');
             const payload = jwt.verify(token, process.env.APP_SECRET);
             const consumer = await searchConsumerById(payload.id);
-            console.log('procurando consumer no banco: ', consumer);
+            console.log(consumer);
             done(null, payload, { token });
         } catch (err) {
             done(err);
