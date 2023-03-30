@@ -55,7 +55,7 @@ Instale as dependências necessárias para cada serviço
 
     npm install
     
-Rode o Docker-Compose
+Use o Docker Compose para subir os containers de todos os serviços
 
     docker-compose up
     
@@ -65,7 +65,38 @@ Rode os testes de cada serviço
     
 Use as coleções do Postman para rodar os Endpoints. 
 
+### Autenticação
+
+Na **API-Gateway** temos uma query do mongo para popular o banco com usuários autenticados. Após rodar a query, utilize uma das contas para acessar a aplicação:
+
+    email: fernandoleandrobernardes@example.com.br
+    password: aloha
     
+ou 
+
+    email: ianfernandoribeiro@example.com.br
+    password: ian123
+    
+  
+## Time 
+
+
+Squad Clientes
+  
+  <a href = "https://github.com/isaciqo" ><img src="https://avatars.githubusercontent.com/u/102880481?s=64&v=4" alt="Isac" height="30px"></a>
+  <a href = "https://github.com/RenzoOliveira1784" ><img src="https://avatars.githubusercontent.com/u/81581705?s=64&v=4" alt="Renzo" height="30px"></a>
+  
+Squad Prevenção de Fraude 
+
+  <a href = "https://github.com/Gah2k0" ><img src="https://avatars.githubusercontent.com/u/85766619?s=64&v=4" alt="Gabriel" height="30px"></a>
+  <a href = "https://github.com/carolcampelo" ><img src="https://avatars.githubusercontent.com/u/87877044?s=64&v=4" alt="Carolina" height="30px"></a>
+  <a href = "https://github.com/NickMendes" ><img src="https://avatars.githubusercontent.com/u/66397994?s=64&v=4" alt="Marina" height="30px"></a>
+
+Squad Transactions
+
+  <a href = "https://github.com/rwsleal" ><img src="https://avatars.githubusercontent.com/u/87544768?s=64&v=4" alt="Richard" height="30px"></a>
+  <a href = "https://github.com/monteiroleticia" ><img src="https://avatars.githubusercontent.com/u/48692890?s=64&v=4" alt="Leticia" height="30px"></a>
+
 
 
 
