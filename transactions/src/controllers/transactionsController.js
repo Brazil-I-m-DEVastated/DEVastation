@@ -1,5 +1,7 @@
 import Transaction from '../model/Transaction.js';
 import { verifyClient, openFraudAnalysis } from '../helpers/fetchAPI.js';
+import TRANSACTION_STATUS from '../constants/constants.js';
+import generateLinks from '../helpers/links.js';
 
 class TransactionController {
     static getById = async (req, res) => {
@@ -22,22 +24,39 @@ class TransactionController {
 
         if (transactionValue > (income/2)) {
 
-            const transactionInAnalysis = new Transaction({ ...transaction, status: 'Em Análise'});
+            const transactionInAnalysis = new Transaction({ ...transaction, 
+                status: TRANSACTION_STATUS.EM_ANALISE });
             
             await transactionInAnalysis.save();
 
             openFraudAnalysis(clientId, transactionInAnalysis._id);
+
+            const response = {
+                id: transactionInAnalysis._id,
+                status: transactionInAnalysis.status,
+                links: generateLinks(
+                    transactionInAnalysis._id,
+                    transactionInAnalysis.status
+                )
+            };
             
-            return res.status(303).json(transactionInAnalysis);
+            return res.status(303).json(response);
         } else {
-            const transactionApproved = new Transaction({ ...transaction, status: 'Aprovada'});
+            const transactionApproved = new Transaction({ ...transaction, 
+                status: TRANSACTION_STATUS.APROVADA });
             
             await transactionApproved.save();
 
-            return res.status(201).json(transactionApproved);
-        }
-
-    };
+            const response = {
+                id: transactionApproved._id,
+                status: transactionApproved.status,
+                links: generateLinks(
+                    transactionApproved._id,
+                    transactionApproved.status
+                )
+            };
+            return res.status(201).json(response);
+        }}; 
 
     static updateStatus = async (req, res) => {
         const { id } = req.params;
@@ -45,7 +64,7 @@ class TransactionController {
 
         const transaction = await Transaction.findById(id);
 
-        if ( transaction.status === 'Em Análise') {
+        if ( transaction.status === TRANSACTION_STATUS.EM_ANALISE ) {
 
             const updatedTransaction = await Transaction
                 .findByIdAndUpdate(id, { status }, { new: true });
