@@ -65,9 +65,9 @@ Rode os testes de cada serviço
 
 Acesse a documentação das API:
 
-[![Documentação Clientes](https://img.shields.io/badge/docs-Clientes-ab5c6d?style=plastic)](http://localhost:3001/clients/docs)
-[![Documentação Prevenção de Fraudes](https://img.shields.io/badge/docs-Prevenção%20de%20Fraudes-9b963a?style=plastic)](http://localhost:3002/fraudanalysis/docs)
-[![Documentação Clientes](https://img.shields.io/badge/docs-Transações-0083a1?style=plastic)](http://localhost:3003/transactions/docs)
+[![Documentação Clientes](https://img.shields.io/badge/docs-Clientes-ab5c6d?style=plastic)](http://clients:3001/clients/docs)
+[![Documentação Prevenção de Fraudes](https://img.shields.io/badge/docs-Prevenção%20de%20Fraudes-9b963a?style=plastic)](http://fraudprevention:3002/fraudanalysis/docs)
+[![Documentação Clientes](https://img.shields.io/badge/docs-Transações-0083a1?style=plastic)](http://transactions:3003/transactions/docs)
 
 Use as coleções do Postman para rodar os Endpoints. 
 
