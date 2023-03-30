@@ -1,0 +1,12 @@
+use('DEVastation-users');
+
+db.users.insertMany([
+    {
+        'email': 'fernandoleandrobernardes@example.com.br',
+        'password': '$2a$10$MNkygjuk3EGK7omBgsjI1uj6xyUsBAPRKUb3mjj/sDDKsnGz088WW',
+    },
+    {
+        'email': 'ianfernandoribeiro@example.com.br',
+        'password': '$2a$10$tzOhbZrYpZw5fSyCdyMRMuMm9EHTpOd0c4lFhbqdalbjshkwo7MMC'
+    },
+]);
