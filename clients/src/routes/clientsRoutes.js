@@ -11,6 +11,7 @@ router
     .get('/clients', authBearer, ClientsController.listClients)
     .get('/clients/:id', authBearer, ClientsController.listClientById)
     .post('/clients/verifycard', authBearer, ClientsController.verifyCard)
+    .put('/clients/criptografy', ClientsController.encryptCard)
     .post('/clients/login', 
         passport.authenticate('local', { session: false }), 
         ClientsController.userLogin);

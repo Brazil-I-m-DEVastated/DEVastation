@@ -20,7 +20,7 @@ db.clientsinfos.insertMany([
             'number':'5583 6915 6565 4118',
             'name':'Fernando L S Bernardes',
             'expirationDate':'28/01/2024',
-            'cvc':'864',
+            'cvv':'864',
         }                     
     },{
         'name': 'Carlos Brazil',
@@ -40,7 +40,7 @@ db.clientsinfos.insertMany([
             'number':'5560 7012 0741 2234',
             'name':'Carlos D Brazil',
             'expirationDate':'28/01/2024',
-            'cvc':'751',
+            'cvv':'751',
         }                      
     },{
         'name': 'João chile',
@@ -60,7 +60,7 @@ db.clientsinfos.insertMany([
             'number':'5181 6909 4569 1358',
             'name':'João B chile',
             'expirationDate':'28/08/2024',
-            'cvc':'195',
+            'cvv':'195',
         }                    
     },{
         'name': 'Ian Fernando Roberto Ribeiro',
@@ -80,7 +80,7 @@ db.clientsinfos.insertMany([
             'number':'5195 3984 9804 3571',
             'name':'Ian F R Ribeiro',
             'expirationDate':'28/02/2024',
-            'cvc':'179',
+            'cvv':'179',
         }                       
     },{
         'name': 'Alexandre Anthony Ribeiro',
@@ -100,7 +100,7 @@ db.clientsinfos.insertMany([
             'number':'5197 9004 2703 2605',
             'name':'10',
             'expirationDate':'28/08/2023',
-            'cvc':'507',
+            'cvv':'507',
         }                    
     },
 ]);

@@ -1,6 +1,7 @@
 
 import Clients from '../models/clients.js';
 import generateToken from '../middlewares/auth/auth.js';
+import { decryptCard, encryptCard } from '../security/dbsecurity.js';
 
 class ClientsController {
     static listClients = async (req, res) => {
@@ -37,8 +38,11 @@ class ClientsController {
     static verifyCard = async (req, res) => {
         const cardValidate = req.body;
 
-        const cardFilter = { 'card.name': cardValidate.name, 'card.number': cardValidate.number, 
-            'card.expirationDate': cardValidate.expirationDate,'card.cvc': cardValidate.cvc};
+        const cardFilter = { 
+            'card.name': encryptCard(cardValidate.name), 
+            'card.number': encryptCard(cardValidate.number), 
+            'card.expirationDate': encryptCard(cardValidate.expirationDate),
+            'card.cvv': encryptCard(cardValidate.cvv)};
         try{
             const cardFound = await Clients.find(cardFilter);
             if(cardFound.length < 1 ){
@@ -47,7 +51,6 @@ class ClientsController {
             const clientId = cardFound[0]._id;
             const income = cardFound[0].income;
             return res.status(200).json({clientId, income});
-            
             
         }catch(error){
             return res.status(500).send( {message: error.message});
@@ -65,6 +68,31 @@ class ClientsController {
         }
     };
     
+
+    static encryptCard = async (_req, res) => {
+        try {
+            
+            const client = await Clients.find();
+
+            console.log('Antes do for');
+            for (let a = 0; a < client.length; a++) {
+                console.log(`rodada ${a}`);
+                client[a].card.name = encryptCard(client[a].card.name);
+                client[a].card.cvv = encryptCard(client[a].card.cvv);
+                client[a].card.number = encryptCard(client[a].card.number);
+                client[a].card.expirationDate = encryptCard(client[a].card.expirationDate);
+                
+                await Clients.findByIdAndUpdate(client[a]._id, { $set: client[a] });
+            }
+
+            return res.status(200).send({client});
+        } catch (err) {
+            res.status(500).send({message: `${err.message} - falha ao criptografar clientes`});
+        }
+        
+
+    };
+
 
 }
 

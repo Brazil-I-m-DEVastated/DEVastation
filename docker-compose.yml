@@ -31,6 +31,8 @@ services:
       - TRANSACTIONS_PORT=3003
       - RABBIT_HOST=rabbit
       - RABBIT_PORT=5672
+      - VI_CRYPTO=30481b581eb237cbf1296c74285e87aa
+      - KEY_CRYPTO=bd8db53fcc2b8f74400e5366be34b11561485af56dfd7576543698d22917adc4
     depends_on:
       - mongo
 
@@ -101,5 +103,6 @@ services:
       - clients
       - fraudprevention
       - transactions
+      - mongo
 volumes:
   db-mongo:
