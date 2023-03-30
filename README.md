@@ -14,7 +14,7 @@ Este é o projeto final do curso de formação **NxtDev da PagoNxt**. O projeto 
 graph TD;
 T1(Transação) --> C1(Verifica Dados) -- Inválidos --> T2(Reprova)
 C1 -- Válidos --> T3(Valor da Transação x Renda)
-T3 -- Maior que 50% --> F1(Análise Humana)
+T3 -- Maior que 50% --> F1(Análise Anti-Fraude)
 T3 -- Menor que 50% --> T4(Aprova)
 F1 --> F2(Aprova)
 F1 --> F3(Reprova)
