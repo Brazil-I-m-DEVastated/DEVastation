@@ -4,6 +4,7 @@ import { createRequire } from 'node:module';
 import { errorHandler } from '../src/middlewares/index.js';
 import transactionsRoutes from '../src/routes/transactionsRoutes.js';
 import db from '../src/db/config/mongodb-connection.js';
+import './middlewares/auth/auth.js';
 
 const require = createRequire(import.meta.url);
 const swaggerDocument = require('./swagger/transactions.json');

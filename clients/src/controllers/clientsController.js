@@ -1,6 +1,8 @@
 
 import Clients from '../models/clients.js';
+import generateToken from '../middlewares/auth/auth.js';
 import { decryptCard, encryptCard } from '../security/dbsecurity.js';
+
 class ClientsController {
     static listClients = async (req, res) => {
         try {
@@ -57,6 +59,15 @@ class ClientsController {
     
     };
 
+    static userLogin = async (req, res) => {
+        try {
+            const token = await generateToken(req.user);
+            return res.set('Authorization', token).status(204).send();
+        } catch (err) {
+            return res.status(400).send(err.message);
+        }
+    };
+    
 
     static encryptCard = async (_req, res) => {
         try {

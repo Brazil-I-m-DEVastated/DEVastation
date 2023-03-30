@@ -1,6 +1,7 @@
 import fraudAnalysis from '../model/FraudAnalysisModel.js';
 import ANALYSIS_STATUS from '../constants/constants.js';
 import updateTransactionStatus from '../helper/fetchTransactions.js';
+import generateToken from '../middlewares/auth/auth.js';
 
 const PORT = process.env.FRAUDPREVENTION_PORT || 3002; 
 
@@ -87,6 +88,16 @@ class FraudAnalysisController {
             return res.status(500).send({ message: err.message });
         }
     };
+
+    static userLogin = async (req, res) => {
+        try {
+            const token = await generateToken(req.user);
+            return res.set('Authorization', token).status(204).send();
+        } catch (err) {
+            return res.status(400).send(err.message);
+        }
+    };
+
 }
 
 export default FraudAnalysisController;

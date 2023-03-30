@@ -1,5 +1,6 @@
 import express from 'express';
 import routes from './routes/index.js';
+import './middlewares/auth/auth.js';
 import swaggerUi from 'swagger-ui-express';
 import { createRequire } from 'node:module';
 
