@@ -1,5 +1,6 @@
 import Transaction from '../model/Transaction.js';
 import { verifyClient, openFraudAnalysis } from '../helpers/fetchAPI.js';
+import generateToken from '../middlewares/auth/auth.js';
 
 class TransactionController {
     static getById = async (req, res) => {
@@ -56,6 +57,16 @@ class TransactionController {
             throw new Error('422|"transaction" status must be a valid one');
         }
     };
+
+    static userLogin = async (req, res) => {
+        try {
+            const token = await generateToken(req.user);
+            return res.set('Authorization', token).status(204).send();
+        } catch (err) {
+            return res.status(400).send(err.message);
+        }
+    };
+
 }
 
 export default TransactionController;

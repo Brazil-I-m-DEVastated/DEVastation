@@ -1,0 +1,12 @@
+use('devastation-transactions');
+
+db.consumers.insertMany([
+    {
+        'consumerName': 'fraud',
+        'password': '$2a$10$MNkygjuk3EGK7omBgsjI1uj6xyUsBAPRKUb3mjj/sDDKsnGz088WW',
+    },
+    {
+        'consumerName': 'ianfernandoribeiro@example.com.br',
+        'password': '$2a$10$tzOhbZrYpZw5fSyCdyMRMuMm9EHTpOd0c4lFhbqdalbjshkwo7MMC'
+    },
+]);
