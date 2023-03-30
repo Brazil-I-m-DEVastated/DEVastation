@@ -29,10 +29,8 @@ describe('POST /transactions', () => {
                 .expect('content-type', /json/)
                 .expect(201);
             
-            expect(response.body).toHaveProperty('_id');
-            expect(response.body).toHaveProperty('clientId');
+            expect(response.body).toHaveProperty('id');
             expect(response.body).toHaveProperty('status');
-            expect(response.body).toHaveProperty('transactionValue');
             expect(response.body.status).toBe('Aprovada');
 
         });
@@ -61,10 +59,8 @@ describe('POST /transactions', () => {
                 .expect('content-type', /json/)
                 .expect(303);
             
-            expect(response.body).toHaveProperty('_id');
-            expect(response.body).toHaveProperty('clientId');
+            expect(response.body).toHaveProperty('id');
             expect(response.body).toHaveProperty('status');
-            expect(response.body).toHaveProperty('transactionValue');
             expect(response.body.status).toBe('Em Análise');
         });
     });

@@ -14,8 +14,6 @@ describe('PATCH /transactions/:id', () => {
         afterEach(() => {
             jest.clearAllMocks();
         });
-
-        // afterAll((done) => { mongoose.connection.close(); done(); });
         
         it('should update a transaction with status "Em Análise" to "Aprovada"', async () => {
             const response = await request(app)

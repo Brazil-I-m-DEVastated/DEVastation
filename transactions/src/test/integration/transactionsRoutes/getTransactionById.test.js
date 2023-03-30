@@ -12,8 +12,6 @@ describe('GET /transactions/:id', () => {
         afterEach(() => {
             jest.clearAllMocks();
         });
-
-        // afterAll((done) => { mongoose.connection.close(); done(); });
         
         it('should return an specified transaction with status 200', async () => {
             const response = await request(app)
