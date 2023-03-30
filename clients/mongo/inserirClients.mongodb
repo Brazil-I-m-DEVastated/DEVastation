@@ -1,4 +1,4 @@
-use('clients');
+use('DEVastation-clients');
 
 
 db.clientsinfos.insertMany([

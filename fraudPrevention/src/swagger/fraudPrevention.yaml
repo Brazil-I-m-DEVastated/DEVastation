@@ -1,0 +1,131 @@
+openapi: 3.0.1
+info:
+  title: Fraud Prevention API
+  description: API to prevent frauds in an e-Commerce.
+  version: 0.0.1
+  termsOfService: https://mockapi.io
+  contact: 
+    name: Developers Support
+    email: contact@example.com
+    url: https://mockapi.io
+  license:
+    name: GPLv3
+    url: https://www.gnu.org/licenses/gpl-3.0.html
+externalDocs:
+  description: Burocratic documentation
+  url: https://mockapi.io
+servers:
+  - url: https://63ce8fe2fdfe2764c725b20e.mockapi.io
+paths:
+  /fraudanalysis:
+    get: 
+      summary: Retrieve all awaiting fraud analysis
+      responses:
+        200:
+          description: Success
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FraudAnalysis"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              example: Invalid JWT Token
+        500:
+          description: Error
+          content: 
+            application/json:
+              example: Error
+    post: 
+      summary: Create a new fraud analysis
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FraudAnalysis'
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              example: Invalid JWT Token
+        500:
+          description: Error
+          content: 
+            application/json:
+              example: Error
+  /fraudanalysis/{id}:
+    parameters:
+    - name: id
+      in: path
+      schema:
+        type: string
+      required: true
+    get:
+      summary: Retrieve fraud analysis by ID
+      responses: 
+        200:
+          description: Success
+          content: 
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/FraudAnalysis"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              example: Invalid JWT Token
+        404:
+          description: Fraud Analysis not found
+          content:
+            application/json:
+              example: ID Not Found
+        500:           
+          description: Error
+          content: 
+            application/json:
+              example: Error
+    patch:
+      summary: Modifies fraud analysis status
+      responses:
+        204:
+          description: Success
+        400:
+          description: Error updating status
+          content:
+            application/json:
+              example: Error. 'Aprovada' or 'Rejeitada' statuses cannot be updated.
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              example: Invalid JWT Token
+        500:
+          description: Error
+          content: 
+            application/json:
+              example: Error
+components:
+  schemas:
+    FraudAnalysis:
+      type: object
+      properties:
+        id:
+          type: string
+        client_id:
+          type: string
+        transaction_id:
+          type: string
+        status:
+          type: string
+    AllFraudAnalysis:
+      type: array
+      items: 
+        $ref: "#/components/schemas/FraudAnalysis"
+  securitySchemes:
+    auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

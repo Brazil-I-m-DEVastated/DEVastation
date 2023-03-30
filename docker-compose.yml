@@ -33,6 +33,8 @@ services:
       - RABBIT_PORT=5672
       - VI_CRYPTO=30481b581eb237cbf1296c74285e87aa
       - KEY_CRYPTO=bd8db53fcc2b8f74400e5366be34b11561485af56dfd7576543698d22917adc4
+    depends_on:
+      - mongo
 
   fraudprevention:
     build: ./fraudPrevention/
@@ -53,6 +55,8 @@ services:
       - TRANSACTIONS_PORT=3003
       - RABBIT_HOST=rabbit
       - RABBIT_PORT=5672
+    depends_on:
+      - mongo
 
   transactions:
     build: ./transactions/
@@ -73,6 +77,31 @@ services:
       - TRANSACTIONS_PORT=3003
       - RABBIT_HOST=rabbit
       - RABBIT_PORT=5672
+    depends_on:
+      - mongo
 
+  gateway:
+    build: ./apiGateway
+    container_name: devastation-gateway
+    volumes: 
+      - ./apiGateway:/node-app
+    ports:
+      - 3000:3000
+    environment:
+      - DB_HOST=mongo
+      - DB_PORT=27017
+      - DB_USER=admin
+      - DB_PASSWORD=secret
+      - GATEWAY_PORT=3000
+      - CLIENTS_HOST=clients
+      - CLIENTS_PORT=3001
+      - FRAUDPREVENTION_HOST=fraudprevention
+      - FRAUDPREVENTION_PORT=3002
+      - TRANSACTIONS_HOST=transactions
+      - TRANSACTIONS_PORT=3003
+    depends_on:
+      - clients
+      - fraudprevention
+      - transactions
 volumes:
   db-mongo:
