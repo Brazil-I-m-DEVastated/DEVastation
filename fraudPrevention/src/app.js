@@ -16,7 +16,7 @@ db.once('open', () => {
 
 const app = express();
 
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+app.use('/fraudanalysis/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
 app.use(express.json());
 // app.use(errorHandler);
