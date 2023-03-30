@@ -1,6 +1,6 @@
 # DEVastation 
 
-![Brazil, I'm DEVasted](https://img.shields.io/badge/Brazil-I'm%20DEVasted-green?style=plastic&logo=appveyor)
+![Brazil, I'm DEVasted](https://img.shields.io/badge/Brazil-I'm%20DEVasted-green?style=plastic) 
 
 Este é o projeto final do curso de formação **NxtDev da PagoNxt**. O projeto consiste em uma Arquitetura de Microserviços responsável por **detectar fraudes de pagamento**, dividida em três serviços:
 
@@ -62,8 +62,15 @@ Use o Docker Compose para subir os containers de todos os serviços
 Rode os testes de cada serviço
 
     npm run test
-    
+
+Acesse a documentação das API:
+
+[![Documentação Clientes](https://img.shields.io/badge/docs-Clientes-ab5c6d?style=plastic)](http://localhost:3001/clients/docs)
+[![Documentação Prevenção de Fraudes](https://img.shields.io/badge/docs-Prevenção%20de%20Fraudes-9b963a?style=plastic)](http://localhost:3002/fraudanalysis/docs)
+[![Documentação Clientes](https://img.shields.io/badge/docs-Transações-0083a1?style=plastic)](http://localhost:3003/transactions/docs)
+
 Use as coleções do Postman para rodar os Endpoints. 
+
 
 ### Autenticação
 
