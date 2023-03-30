@@ -17,7 +17,8 @@ const transactionSchema = new mongoose.Schema(
             required: true,
             enum: ['Em Análise', 'Aprovada', 'Rejeitada']
         }
-    }
+    },
+    { versionKey: false }
 
 );
 

@@ -40,19 +40,15 @@ class ClientsController {
             'card.name': encryptCard(cardValidate.name), 
             'card.number': encryptCard(cardValidate.number), 
             'card.expirationDate': encryptCard(cardValidate.expirationDate),
-            'card.cvc': encryptCard(cardValidate.cvc)};
+            'card.cvv': encryptCard(cardValidate.cvv)};
         try{
             const cardFound = await Clients.find(cardFilter);
             if(cardFound.length < 1 ){
                 return res.status(404).send({ message: 'Card not found' });
             }
-            const cvc = decryptCard(cardFound[0].card.cvc);
-            const number = decryptCard(cardFound[0].card.number);
-            const expirationDate = decryptCard(cardFound[0].card.expirationDate);
-            const name = decryptCard(cardFound[0].card.name);
             const clientId = cardFound[0]._id;
             const income = cardFound[0].income;
-            return res.status(200).json({clientId, income, cvc, number, name, expirationDate});
+            return res.status(200).json({clientId, income});
             
         }catch(error){
             return res.status(500).send( {message: error.message});
@@ -71,7 +67,7 @@ class ClientsController {
             for (let a = 0; a < client.length; a++) {
                 console.log(`rodada ${a}`);
                 client[a].card.name = encryptCard(client[a].card.name);
-                client[a].card.cvc = encryptCard(client[a].card.cvc);
+                client[a].card.cvv = encryptCard(client[a].card.cvv);
                 client[a].card.number = encryptCard(client[a].card.number);
                 client[a].card.expirationDate = encryptCard(client[a].card.expirationDate);
                 
